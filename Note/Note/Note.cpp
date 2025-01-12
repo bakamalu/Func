@@ -2,28 +2,29 @@
 
 int main()
 {
-    std::vector<mainCharacter> vecWrite = {
-        mainCharacter{"上海", "北京", "交易员", "大名","无"},
-        mainCharacter{"上海", "北京", "交易员", "小名","无2"}
+    std::vector<timeCharacter> vecWrite = {
+        timeCharacter{"异世界", "地球", "勇者", "橘子","很矮", false},
+        timeCharacter{"上海", "北京", "魔王", "橙子","很高", true}
     };
+    vecWrite[0].setTime("2025年1月1日", "2025年12月31日");
 
-    std::vector<mainCharacter> vecRead;
+    std::vector<timeCharacter> vecRead;
     string strFileName = "main.bin";
 
 
-    for (mainCharacter& param : vecWrite)
+//     for (timeCharacter& param : vecWrite)
+//     {
+//         param.describe();
+//     }
+
+    SerializableBase<timeCharacter>::multiBinSave(vecWrite, strFileName);
+    SerializableBase<timeCharacter>::multiBinLoad(strFileName, vecRead);
+
+    for (timeCharacter& param : vecRead)
     {
         param.describe();
     }
 
-    SerializableBase<mainCharacter>::multiBinSave(vecWrite, strFileName);
-    SerializableBase<mainCharacter>::multiBinLoad(strFileName, vecRead);
-
-    for (mainCharacter& param : vecRead)
-    {
-        param.describe();
-    }
-
-    cout << common::random(0, 100);
+    int nRand = common::random(0, 100, common::E_RANDOM_RUNNING_HOST);
     return 0;
 }

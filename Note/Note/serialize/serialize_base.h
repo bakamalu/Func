@@ -108,6 +108,44 @@ public:
     }
 };
 
+class tell
+{
+protected:
+    tell() = default;
+
+    virtual std::string detail() = 0;
+
+public:
+    virtual void describe()
+    {
+        std::cout << detail() << std::endl;
+    }
+};
+
+class cProperty
+{
+protected:
+    cProperty() = default;
+
+public:
+    void setProperty()
+    {
+
+    }
+
+protected:
+    // 力量
+    int m_nPower;
+    // 速度
+    int m_nSpeed;
+    // 法力值(精神力)
+    int m_nMP;
+    // 体力(防御力)
+    int m_nHp;
+    // 技能/特性
+    string m_strSkill;
+};
+
 // 工厂类，用于根据类型名创建子类实例
 // class SerializableFactory 
 // {
